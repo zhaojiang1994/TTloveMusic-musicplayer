@@ -1,13 +1,36 @@
-# 🎵 天天爱听 · 南岭典藏版
+# 🎵 天天爱听 · 南岭典藏版，音乐播放软件，支持alist，本地，http曲库
 
 一款功能丰富的 Web 音乐播放器，支持本地音乐库、AList 远程存储、等多种来源。可浏览器直接运行，也可通过 Electron 打包为桌面应用。
 
-## ✨ 功能特色
+![1](C:\Users\Administrator\Desktop\1.bmp)
+
+![2](C:\Users\Administrator\Desktop\2.bmp)
+
+![3](C:\Users\Administrator\Desktop\3.bmp)
+
+![4](C:\Users\Administrator\Desktop\4.bmp)
+![5](C:\Users\Administrator\Desktop\5.bmp)
+
+![6](C:\Users\Administrator\Desktop\6.bmp)
+
+<img src="C:\Users\Administrator\Downloads\1000008697.jpg" alt="1000008697" style="zoom:33%;" />
+
+<img src="C:\Users\Administrator\Downloads\1000008698.jpg" alt="1000008698" style="zoom:33%;" />
+
+
+
+# 🏷架构设计
+
+![image-20260612222431854](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20260612222431854.png)
+
+
+
+## ✨ 
 
 ### 🎶 多来源播放
 - **HTTP 文件目录** — 直接扫描 Nginx / Apache 等静态文件服务
 - **AList 存储** — 对接 AList 网盘聚合，支持目录浏览与搜索
-- **本地文件** — 浏览器环境下直接播放
+- **本地文件** —本地目录可以直接添加目录播放
 
 ### 🎤 歌词支持
 - **多平台搜索** — 网易云音乐，目前只支持这个
@@ -86,7 +109,7 @@ services:
     ports:
       - "5244:5244"
     volumes:
-      - 你的data目录:/opt/alist/data
+      - ./:/opt/alist/data
     environment:
       - TZ=Asia/Shanghai
 ```
