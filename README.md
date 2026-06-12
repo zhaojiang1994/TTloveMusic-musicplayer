@@ -1,27 +1,27 @@
 # 🎵 天天爱听 · 南岭典藏版，音乐播放软件，支持alist，本地，http曲库
 
-一款功能丰富的 Web 音乐播放器，支持本地音乐库、AList 远程存储、等多种来源。可浏览器直接运行，也可通过 Electron 打包为桌面应用。
+一款功能丰富的 Web 音乐播放器，支持本地音乐库、**AList 远程存储、等多种来源。可浏览器直接运行**，也可通过 Electron 打包为桌面应用。
 
-![1](C:\Users\Administrator\Desktop\1.bmp)
+<img src="https://i.postimg.cc/pr99XLWm/1.jpg" width="300" style="zoom: 300%;" >
+<img src="https://i.postimg.cc/yYT80RDm/2.jpg" width="300" style="zoom:300%;" >
+<img src="https://i.postimg.cc/CL4xb8RH/3.jpg" width="300" style="zoom:300%;" >
+<img src="https://i.postimg.cc/c4cLf3vX/4.jpg" width="300" style="zoom:300%;" >
+<img src="https://i.postimg.cc/Z5KKHq3q/5.jpg" width="300" style="zoom:300%;" >
+<img src="https://i.postimg.cc/MpPZF8bK/6.jpg" width="300" style="zoom:300%;" >
 
-![2](C:\Users\Administrator\Desktop\2.bmp)
+<img src="https://i.postimg.cc/50wHHNDn/1000008697.jpg" width="300" style="zoom:150%;" >
+<img src="https://i.postimg.cc/Y9144qT8/1000008698.jpg" width="300" style="zoom:150%;" >
+<img src="https://i.postimg.cc/264qq8gG/1000008699.jpg" width="300" style="zoom:150%;" >
 
-![3](C:\Users\Administrator\Desktop\3.bmp)
 
-![4](C:\Users\Administrator\Desktop\4.bmp)
-![5](C:\Users\Administrator\Desktop\5.bmp)
 
-![6](C:\Users\Administrator\Desktop\6.bmp)
 
-<img src="C:\Users\Administrator\Downloads\1000008697.jpg" alt="1000008697" style="zoom:33%;" />
-
-<img src="C:\Users\Administrator\Downloads\1000008698.jpg" alt="1000008698" style="zoom:33%;" />
 
 
 
 # 🏷架构设计
 
-![image-20260612222431854](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20260612222431854.png)
+[![213.jpg](https://i.postimg.cc/bNFvwtd3/213.jpg)](https://postimg.cc/nCBxdM4D)
 
 
 
@@ -68,7 +68,7 @@ npx serve .
 ```
 
 ### 安卓版
-使用根目录的js,css,mg.html，放入安卓打包目录中,注意！apk省电行为要设置为无限制，不然会导致后台无法播放
+使用根目录的js,css,mg.html，放入安卓打包目录中,注意！apk省电行为要设置为无限制或者高优先级，不然会导致后台无法播放
 ```bash
 npm run build
 ```
