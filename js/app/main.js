@@ -1425,7 +1425,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var _alistAbort = null;  // 用于取消旧请求
 
-    // AList 播放：fetch + Blob 渐进播放 + Range XHR 读歌词
+    // AList 播放：获取直链后直接播放（不经过 MediaSource）
     async function alistPlayFile(filePath, token, baseUrl, srcKey) {
         console.log('🎵 alistPlayFile 被调用');
         if (_alistAbort) { _alistAbort.abort(); _alistAbort = null; }
@@ -1458,7 +1458,44 @@ document.addEventListener('DOMContentLoaded', function() {
                 currentPlaylist[currentIndex].src = rawUrl;
                 if (allSongsMaster[currentIndex]) allSongsMaster[currentIndex].src = rawUrl;
             }
-            streamPlay(rawUrl, currentPlaylist[currentIndex] || allSongsMaster[currentIndex]);
+            // 直接播放，不经过 MediaSource（避免分片流断链导致的重播）
+            audio.oncanplay = null; audio.onerror = null;
+            audio.src = rawUrl;
+            audio.load();
+            try {
+                await audio.play();
+                window.isPlaying = true;
+                updatePlayButton(playPauseBtn, true);
+                // 歌词
+                var _alistSong = currentPlaylist[currentIndex];
+                if (_alistSong && typeof window.fetchLyricsFromProvider === 'function') {
+                    window.fetchLyricsFromProvider(_alistSong.name, _alistSong.artist || '').then(function(nl) {
+                        if (nl && typeof parseLrcToArray === 'function') {
+                            var _alistLrc = parseLrcToArray(nl);
+                            if (_alistLrc.length > 0 && typeof displayLyrics === 'function') displayLyrics(_alistLrc, lyricsBox, audio);
+                        }
+                    }).catch(function(){});
+                }
+            } catch(e) {
+                // 重试一次（带 audio.load()）
+                try {
+                    audio.load();
+                    await audio.play();
+                    window.isPlaying = true;
+                    updatePlayButton(playPauseBtn, true);
+                    var _alistSong2 = currentPlaylist[currentIndex];
+                    if (_alistSong2 && typeof window.fetchLyricsFromProvider === 'function') {
+                        window.fetchLyricsFromProvider(_alistSong2.name, _alistSong2.artist || '').then(function(nl) {
+                            if (nl && typeof parseLrcToArray === 'function') {
+                                var _alistLrc2 = parseLrcToArray(nl);
+                                if (_alistLrc2.length > 0 && typeof displayLyrics === 'function') displayLyrics(_alistLrc2, lyricsBox, audio);
+                            }
+                        }).catch(function(){});
+                    }
+                } catch(e2) {
+                    console.error('[播放] AList播放失败:', e2);
+                }
+            }
         } catch(e) {}
     }
 
